@@ -24,7 +24,6 @@ import net.minecraft.world.level.levelgen.feature.foliageplacers.FoliagePlacerTy
 import net.minecraft.world.level.levelgen.feature.trunkplacers.TrunkPlacer;
 import net.minecraft.world.level.levelgen.feature.trunkplacers.TrunkPlacerType;
 import net.minecraftforge.common.ForgeSpawnEggItem;
-import net.minecraftforge.common.brewing.BrewingRecipeRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -32,7 +31,6 @@ import samebutdifferent.ecologics.Ecologics;
 import samebutdifferent.ecologics.mixin.forge.AxeItemAccessor;
 import samebutdifferent.ecologics.mixin.forge.FireBlockAccessor;
 import samebutdifferent.ecologics.platform.CommonPlatformHelper;
-import samebutdifferent.ecologics.util.forge.ModBrewingRecipe;
 
 import java.util.Map;
 import java.util.function.Supplier;
