@@ -9,6 +9,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.RecordItem;
 import net.minecraft.world.item.SpawnEggItem;
 import net.minecraft.world.item.alchemy.Potion;
+import net.minecraft.world.item.alchemy.PotionBrewing;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.ComposterBlock;
@@ -82,7 +83,7 @@ public class CommonPlatformHelperImpl {
     }
 
     public static void registerBrewingRecipe(Potion input, Item ingredient, Potion output) {
-        BrewingRecipeRegistry.addRecipe(new ModBrewingRecipe(input, ingredient, output));
+        PotionBrewing.addMix(input, ingredient, output);
     }
 
     public static <T extends FoliagePlacer> Supplier<FoliagePlacerType<T>> registerFoliagePlacerType(String name, Supplier<FoliagePlacerType<T>> foliagePlacerType) {
