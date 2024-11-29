@@ -6,16 +6,23 @@ archivesBaseName = "${rootProject.archives_base_name}-${project.name}"
 
 architectury {
     platformSetupLoomIde()
-    forge()
+    neoForge()
+}
+
+repositories {
+    maven {
+        name = 'NeoForged'
+        url = 'https://maven.neoforged.net/releases'
+    }
 }
 
 loom {
     accessWidenerPath.set(project(":common").file("src/main/resources/ecologics.accesswidener"))
 
-    forge {
-        mixinConfig "ecologics-common.mixins.json"
-        mixinConfig "ecologics.mixins.json"
-        convertAccessWideners.set(true)
+    neoForge {
+        // mixinConfig "ecologics-common.mixins.json"
+        // mixinConfig "ecologics.mixins.json"
+        // convertAccessWideners.set(true)
     }
 }
 
@@ -28,7 +35,7 @@ configurations {
 }
 
 dependencies {
-    forge "net.minecraftforge:forge:${rootProject.forge_version}"
+    neoForge "net.neoforged:neoforge:${rootProject.neoforge_version}"
     common(project(path: ":common", configuration: "namedElements")) { transitive false }
     shadowCommon(project(path: ":common", configuration: "transformProductionForge")) { transitive = false }
 }
