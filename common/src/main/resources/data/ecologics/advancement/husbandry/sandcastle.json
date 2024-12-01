@@ -1,7 +1,7 @@
 {
   "display": {
     "icon": {
-      "item": "ecologics:sandcastle"
+      "id": "ecologics:sandcastle"
     },
     "title": {
       "translate": "advancements.husbandry.sandcastle.title"

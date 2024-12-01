@@ -1,7 +1,7 @@
 {
   "display": {
     "icon": {
-      "item": "ecologics:penguin_feather"
+      "id": "ecologics:penguin_feather"
     },
     "title": {
       "translate": "advancements.husbandry.breed_penguin.title"
