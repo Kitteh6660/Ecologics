@@ -1,4 +1,4 @@
-package samebutdifferent.ecologics.platform.forge;
+package samebutdifferent.ecologics.platform.neoforge;
 
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;

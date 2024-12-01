@@ -1,23 +1,24 @@
-package samebutdifferent.ecologics.registry.forge;
+package samebutdifferent.ecologics.registry.neoforge;
 
-import net.minecraftforge.common.ForgeConfigSpec;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.event.config.ModConfigEvent;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.event.config.ModConfigEvent;
+import net.neoforged.neoforge.common.ModConfigSpec;
 
-public class ModConfigForge {
-    public static ForgeConfigSpec COMMON_CONFIG;
+public class ModConfigNeoForge 
+{
+    public static ModConfigSpec COMMON_CONFIG;
 
     public static final String CATEGORY_BEACH = "beach";
-    public static final ForgeConfigSpec.DoubleValue COCONUT_CRAB_SPAWN_CHANCE;
+    public static final ModConfigSpec.DoubleValue COCONUT_CRAB_SPAWN_CHANCE;
 
     public static final String CATEGORY_DESERT = "desert";
-    public static final ForgeConfigSpec.DoubleValue PRICKLY_PEAR_GROWTH_CHANCE;
+    public static final ModConfigSpec.DoubleValue PRICKLY_PEAR_GROWTH_CHANCE;
 
     public static final String CATEGORY_LUSH_CAVES = "lush_caves";
-    public static final ForgeConfigSpec.BooleanValue REPLACE_AZALEA_TREE;
+    public static final ModConfigSpec.BooleanValue REPLACE_AZALEA_TREE;
 
     static {
-        ForgeConfigSpec.Builder COMMON_BUILDER = new ForgeConfigSpec.Builder();
+    	ModConfigSpec.Builder COMMON_BUILDER = new ModConfigSpec.Builder();
 
         COMMON_BUILDER.comment("Beach Update").push(CATEGORY_BEACH);
         COCONUT_CRAB_SPAWN_CHANCE = COMMON_BUILDER.comment("How often (in percentage) should Coconut Crabs spawn when a coconut breaks? Set it to 0.0 to disable this.").defineInRange("coconutCrabSpawnChance", 0.2, 0.0, 1.0);
