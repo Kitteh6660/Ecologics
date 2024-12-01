@@ -5,5 +5,7 @@
   "ingredient": {
     "item": "ecologics:crab_claw"
   },
-  "result": "ecologics:crab_meat"
+  "result": {
+    "id": "ecologics:crab_meat"
+  }
 }

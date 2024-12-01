@@ -5,5 +5,7 @@
   "ingredient": {
     "item": "ecologics:prickly_pear"
   },
-  "result": "ecologics:cooked_prickly_pear"
+  "result": {
+    "id": "ecologics:cooked_prickly_pear"
+  }
 }
