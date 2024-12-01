@@ -30,6 +30,6 @@ public class ModFeatures
     public static final Supplier<TreeFeature> WALNUT_TREE = CommonPlatformHelper.registerFeature("walnut_tree", () -> new TreeFeature(TreeConfiguration.CODEC));
     
     public static final ResourceKey<ConfiguredFeature<?, ?>> ROOTED_AZALEA_TREE = ResourceKey.create(Registries.CONFIGURED_FEATURE, ResourceLocation.fromNamespaceAndPath(Ecologics.MOD_ID, "rooted_azalea_tree"));
-    public static final ResourceKey<ConfiguredFeature<?, ?>> COCONUT_REGULAR = ResourceKey.create(Registries.CONFIGURED_FEATURE, ResourceLocation.fromNamespaceAndPath(Ecologics.MOD_ID, "coconut"));
-    public static final ResourceKey<ConfiguredFeature<?, ?>> WALNUT_REGULAR = ResourceKey.create(Registries.CONFIGURED_FEATURE, ResourceLocation.fromNamespaceAndPath(Ecologics.MOD_ID, "walnut"));
+    public static final ResourceKey<ConfiguredFeature<?, ?>> COCONUT_REGULAR = ResourceKey.create(Registries.CONFIGURED_FEATURE, ResourceLocation.fromNamespaceAndPath(Ecologics.MOD_ID, "coconut_tree"));
+    public static final ResourceKey<ConfiguredFeature<?, ?>> WALNUT_REGULAR = ResourceKey.create(Registries.CONFIGURED_FEATURE, ResourceLocation.fromNamespaceAndPath(Ecologics.MOD_ID, "walnut_tree"));
 }
