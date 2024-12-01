@@ -1,7 +1,8 @@
 package samebutdifferent.ecologics.worldgen.feature.foliageplacers;
 
-import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.util.RandomSource;
@@ -15,7 +16,7 @@ import samebutdifferent.ecologics.registry.ModBlocks;
 import samebutdifferent.ecologics.registry.ModFoliagePlacerTypes;
 
 public class CoconutFoliagePlacer extends FoliagePlacer {
-    public static final Codec<CoconutFoliagePlacer> CODEC = RecordCodecBuilder.create((placer) -> foliagePlacerParts(placer).apply(placer, CoconutFoliagePlacer::new));
+    public static final MapCodec<CoconutFoliagePlacer> CODEC = RecordCodecBuilder.mapCodec((placer) -> foliagePlacerParts(placer).apply(placer, CoconutFoliagePlacer::new));
 
     public CoconutFoliagePlacer(IntProvider pRadius, IntProvider pOffset) {
         super(pRadius, pOffset);

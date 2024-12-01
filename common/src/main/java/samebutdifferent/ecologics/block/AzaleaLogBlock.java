@@ -18,7 +18,7 @@ public class AzaleaLogBlock extends RotatedPillarBlock {
     public static final BooleanProperty PERSISTENT = BlockStateProperties.PERSISTENT;
 
     public AzaleaLogBlock() {
-        super(Properties.copy(Blocks.OAK_LOG));
+        super(Properties.ofFullCopy(Blocks.OAK_LOG));
         this.registerDefaultState(this.stateDefinition.any().setValue(PERSISTENT, Boolean.FALSE).setValue(AXIS, Direction.Axis.Y));
     }
 

@@ -1,5 +1,7 @@
 package samebutdifferent.ecologics.block;
 
+import com.mojang.serialization.MapCodec;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
@@ -10,14 +12,16 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.BonemealableBlock;
 import net.minecraft.world.level.block.BushBlock;
 import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.block.grower.TreeGrower;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import samebutdifferent.ecologics.block.grower.ModAzaleaTreeGrower;
+import samebutdifferent.ecologics.block.grower.ModTreeGrower;
 
-public class AzaleaFlowerBlock extends BushBlock implements BonemealableBlock {
-    private static final ModAzaleaTreeGrower TREE_GROWER = new ModAzaleaTreeGrower();
+public class AzaleaFlowerBlock extends BushBlock implements BonemealableBlock 
+{
+    private static final TreeGrower TREE_GROWER = ModTreeGrower.AZALEA;
     protected static final VoxelShape SHAPE = Block.box(5.0D, 0.0D, 5.0D, 11.0D, 10.0D, 11.0D);
 
     public AzaleaFlowerBlock() {
@@ -31,7 +35,7 @@ public class AzaleaFlowerBlock extends BushBlock implements BonemealableBlock {
     }
 
     @Override
-    public boolean isValidBonemealTarget(LevelReader level, BlockPos pos, BlockState state, boolean isClient) {
+    public boolean isValidBonemealTarget(LevelReader level, BlockPos pos, BlockState state) {
         return level.getFluidState(pos.above()).isEmpty();
     }
 
@@ -44,4 +48,9 @@ public class AzaleaFlowerBlock extends BushBlock implements BonemealableBlock {
     public void performBonemeal(ServerLevel serverWorld, RandomSource random, BlockPos pos, BlockState state) {
         TREE_GROWER.growTree(serverWorld, serverWorld.getChunkSource().getGenerator(), pos, state, random);
     }
+
+	@Override
+	protected MapCodec<? extends BushBlock> codec() {
+		return null;
+	}
 }

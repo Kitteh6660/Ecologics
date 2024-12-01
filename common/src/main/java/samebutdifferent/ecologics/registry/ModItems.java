@@ -25,7 +25,7 @@ public class ModItems {
     public static final Supplier<Item> PENGUIN_SPAWN_EGG = CommonPlatformHelper.registerSpawnEggItem("penguin_spawn_egg", ModEntityTypes.PENGUIN, 1315860, 16382457);
     public static final Supplier<Item> SQUIRREL_SPAWN_EGG = CommonPlatformHelper.registerSpawnEggItem("squirrel_spawn_egg", ModEntityTypes.SQUIRREL, 10051392, 15720061);
     public static final Supplier<Item> SANDCASTLE = CommonPlatformHelper.registerItem("sandcastle", SandcastleBlockItem::new);
-    public static final Supplier<RecordItem> MUSIC_DISC_COCONUT = CommonPlatformHelper.registerRecordItem("music_disc_coconut", 10, ModSoundEvents.MUSIC_DISC_COCONUT, new Item.Properties().stacksTo(1).rarity(Rarity.RARE));
+    public static final Supplier<Item> MUSIC_DISC_COCONUT = CommonPlatformHelper.registerItem("music_disc_coconut", () -> new Item(new Item.Properties().stacksTo(1).rarity(Rarity.RARE).jukeboxPlayable(ModJukeboxSongs.COCONUT)));
     public static final Supplier<Item> COCONUT_SIGN = CommonPlatformHelper.registerItem("coconut_sign", () -> new SignItem(new Item.Properties().stacksTo(16), ModBlocks.COCONUT_SIGN.get(), ModBlocks.COCONUT_WALL_SIGN.get()));
     public static final Supplier<Item> COCONUT_HANGING_SIGN = CommonPlatformHelper.registerItem("coconut_hanging_sign", () -> new HangingSignItem(ModBlocks.COCONUT_HANGING_SIGN.get(), ModBlocks.COCONUT_WALL_HANGING_SIGN.get(), new Item.Properties().stacksTo(16)));
     public static final Supplier<Item> PRICKLY_PEAR = CommonPlatformHelper.registerItem("prickly_pear", PricklyPearItem::new);
@@ -33,7 +33,7 @@ public class ModItems {
     public static final Supplier<Item> PENGUIN_FEATHER = CommonPlatformHelper.registerItem("penguin_feather", () -> new Item(new Item.Properties()));
     public static final Supplier<Item> WALNUT_SIGN = CommonPlatformHelper.registerItem("walnut_sign", () -> new SignItem(new Item.Properties().stacksTo(16), ModBlocks.WALNUT_SIGN.get(), ModBlocks.WALNUT_WALL_SIGN.get()));
     public static final Supplier<Item> WALNUT_HANGING_SIGN = CommonPlatformHelper.registerItem("walnut_hanging_sign", () -> new HangingSignItem(ModBlocks.WALNUT_HANGING_SIGN.get(), ModBlocks.WALNUT_WALL_HANGING_SIGN.get(), new Item.Properties().stacksTo(16)));
-    public static final Supplier<Item> WALNUT = CommonPlatformHelper.registerItem("walnut", () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(1).saturationMod(0.0F).fast().build())));
+    public static final Supplier<Item> WALNUT = CommonPlatformHelper.registerItem("walnut", () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(1).saturationModifier(0.0F).fast().build())));
     public static final Supplier<Item> AZALEA_SIGN = CommonPlatformHelper.registerItem("azalea_sign", () -> new SignItem(new Item.Properties().stacksTo(16), ModBlocks.AZALEA_SIGN.get(), ModBlocks.AZALEA_WALL_SIGN.get()));
     public static final Supplier<Item> AZALEA_HANGING_SIGN = CommonPlatformHelper.registerItem("azalea_hanging_sign", () -> new HangingSignItem(ModBlocks.AZALEA_HANGING_SIGN.get(), ModBlocks.AZALEA_WALL_HANGING_SIGN.get(), new Item.Properties().stacksTo(16)));
     public static final Supplier<Item> FLOWERING_AZALEA_SIGN = CommonPlatformHelper.registerItem("flowering_azalea_sign", () -> new SignItem(new Item.Properties().stacksTo(16), ModBlocks.FLOWERING_AZALEA_SIGN.get(), ModBlocks.FLOWERING_AZALEA_WALL_SIGN.get()));

@@ -1,12 +1,22 @@
 package samebutdifferent.ecologics.platform;
 
+import java.util.Map;
+import java.util.function.Supplier;
+
+import org.jetbrains.annotations.NotNull;
+
 import dev.architectury.injectables.annotations.ExpectPlatform;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Holder;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.effect.MobEffect;
-import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.MobCategory;
+import net.minecraft.world.entity.SpawnPlacementType;
+import net.minecraft.world.entity.SpawnPlacements;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.RecordItem;
 import net.minecraft.world.item.alchemy.Potion;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
@@ -22,10 +32,6 @@ import net.minecraft.world.level.levelgen.feature.foliageplacers.FoliagePlacer;
 import net.minecraft.world.level.levelgen.feature.foliageplacers.FoliagePlacerType;
 import net.minecraft.world.level.levelgen.feature.trunkplacers.TrunkPlacer;
 import net.minecraft.world.level.levelgen.feature.trunkplacers.TrunkPlacerType;
-import org.jetbrains.annotations.NotNull;
-
-import java.util.Map;
-import java.util.function.Supplier;
 
 public class CommonPlatformHelper {
     @ExpectPlatform
@@ -69,14 +75,14 @@ public class CommonPlatformHelper {
     }
 
     @ExpectPlatform
-    public static <T extends Potion> Supplier<T> registerPotion(String name, Supplier<T> potion) {
+    public static <T extends Holder<Potion>> Supplier<T> registerPotion(String name, Supplier<T> potion) {
         throw new AssertionError();
     }
 
-    @ExpectPlatform
-    public static void registerBrewingRecipe(Potion input, Item ingredient, Potion output) {
+    /*@ExpectPlatform
+    public static void registerBrewingRecipe(Holder<Potion> awkward, Item ingredient, Holder<Potion> output) {
         throw new AssertionError();
-    }
+    }*/
 
     @ExpectPlatform
     public static <T extends FoliagePlacer> Supplier<FoliagePlacerType<T>> registerFoliagePlacerType(String name, Supplier<FoliagePlacerType<T>> foliagePlacerType) {
@@ -108,7 +114,7 @@ public class CommonPlatformHelper {
     }
 
     @ExpectPlatform
-    public static <T extends Mob> void registerSpawnPlacement(EntityType<T> entityType, SpawnPlacements.Type decoratorType, Heightmap.Types heightMapType, SpawnPlacements.SpawnPredicate<T> decoratorPredicate) {
+    public static <T extends Mob> void registerSpawnPlacement(EntityType<T> entityType, SpawnPlacementType decoratorType, Heightmap.Types heightMapType, SpawnPlacements.SpawnPredicate<T> decoratorPredicate) {
         throw new AssertionError();
     }
 
@@ -132,8 +138,9 @@ public class CommonPlatformHelper {
         throw new AssertionError();
     }
 
-    @ExpectPlatform
-    public static Supplier<RecordItem> registerRecordItem(String name, int comparatorValue, Supplier<SoundEvent> soundSupplier, Item.Properties properties) {
+    //TODO: Remove this.
+    /*@ExpectPlatform
+    public static Supplier<JukeboxPlayable> registerRecordItem(String name, int comparatorValue, Supplier<SoundEvent> soundSupplier, Item.Properties properties) {
         throw new AssertionError();
-    }
+    }*/
 }

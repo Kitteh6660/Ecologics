@@ -1,5 +1,10 @@
 package samebutdifferent.ecologics.entity;
 
+import java.util.UUID;
+import java.util.function.Predicate;
+
+import org.jetbrains.annotations.Nullable;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
@@ -11,10 +16,20 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.TimeUtil;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.AgeableMob;
+import net.minecraft.world.entity.EntitySelector;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.NeutralMob;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.entity.ai.goal.*;
+import net.minecraft.world.entity.ai.goal.AvoidEntityGoal;
+import net.minecraft.world.entity.ai.goal.FloatGoal;
+import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
+import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
+import net.minecraft.world.entity.ai.goal.RandomLookAroundGoal;
+import net.minecraft.world.entity.ai.goal.RandomStrollGoal;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.ResetUniversalAngerTargetGoal;
@@ -24,12 +39,8 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
-import org.jetbrains.annotations.Nullable;
 import samebutdifferent.ecologics.registry.ModItems;
 import samebutdifferent.ecologics.registry.ModSoundEvents;
-
-import java.util.UUID;
-import java.util.function.Predicate;
 
 public class CoconutCrab extends Animal implements NeutralMob {
     private static final EntityDataAccessor<Boolean> HAS_COCONUT = SynchedEntityData.defineId(CoconutCrab.class, EntityDataSerializers.BOOLEAN);
@@ -96,10 +107,10 @@ public class CoconutCrab extends Animal implements NeutralMob {
     }
 
 
-    @Override
+    /*@Override
     public boolean canBreatheUnderwater() {
         return true;
-    }
+    }*/
 
     @Override
     protected float getWaterSlowDown() {
@@ -112,14 +123,14 @@ public class CoconutCrab extends Animal implements NeutralMob {
     }
 
     @Override
-    public boolean canBeLeashed(Player pPlayer) {
+    public boolean canBeLeashed() {
         return false;
     }
 
-    @Override
+    /*@Override
     protected float getStandingEyeHeight(Pose pose, EntityDimensions size) {
         return this.getBbHeight() * 0.5F;
-    }
+    }*/
 
     public void setHasCoconut(boolean hasCoconut) {
         this.entityData.set(HAS_COCONUT, hasCoconut);
@@ -130,9 +141,9 @@ public class CoconutCrab extends Animal implements NeutralMob {
     }
 
     @Override
-    protected void defineSynchedData() {
-        super.defineSynchedData();
-        this.entityData.define(HAS_COCONUT, true);
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+        super.defineSynchedData(builder);
+        builder.define(HAS_COCONUT, true);
     }
 
     @Override
@@ -215,10 +226,10 @@ public class CoconutCrab extends Animal implements NeutralMob {
             return crab.hasCoconut() && super.canContinueToUse();
         }
 
-        @Override
+        /*@Override
         protected double getAttackReachSqr(LivingEntity attackTarget) {
             return 4.0f + attackTarget.getBbWidth();
-        }
+        }*/
     }
 
     static class CrabHurtByTargetGoal extends HurtByTargetGoal {
