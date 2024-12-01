@@ -24,6 +24,7 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
@@ -50,7 +51,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class EcologicsFabric implements ModInitializer {
-    private static final ResourceKey<CreativeModeTab> TAB = ResourceKey.create(Registries.CREATIVE_MODE_TAB, new ResourceLocation(Ecologics.MOD_ID, "tab")); //FabricItemGroup.builder(new ResourceLocation(Ecologics.MOD_ID, "tab")).icon(() -> new ItemStack(ModBlocks.COCONUT_LOG.get())).build();
+    private static final ResourceKey<CreativeModeTab> TAB = ResourceKey.create(Registries.CREATIVE_MODE_TAB, ResourceLocation.fromNamespaceAndPath(Ecologics.MOD_ID, "tab")); //FabricItemGroup.builder(ResourceLocation.fromNamespaceAndPath(Ecologics.MOD_ID, "tab")).icon(() -> new ItemStack(ModBlocks.COCONUT_LOG.get())).build();
 
     @Override
     public void onInitialize() {
@@ -312,13 +313,13 @@ public class EcologicsFabric implements ModInitializer {
                     world.setBlockAndUpdate(hitResult.getBlockPos(), state.cycle(PotBlock.CHISEL));
                     world.playSound(null, hitResult.getBlockPos(), SoundEvents.UI_STONECUTTER_TAKE_RESULT, SoundSource.BLOCKS, 1.0F, world.getRandom().nextFloat() * 0.4F + 0.8F);
                     player.swing(InteractionHand.MAIN_HAND);
-                    player.getMainHandItem().hurtAndBreak(1, player, (plr) -> plr.broadcastBreakEvent(InteractionHand.MAIN_HAND));
+                    player.getMainHandItem().hurtAndBreak(1, player, EquipmentSlot.MAINHAND);
                 }
                 if (player.getOffhandItem().getItem() instanceof PickaxeItem && !(player.getMainHandItem().getItem() instanceof PickaxeItem) && hand.equals(InteractionHand.OFF_HAND)){
                     world.setBlockAndUpdate(hitResult.getBlockPos(), state.cycle(PotBlock.CHISEL));
                     world.playSound(null, hitResult.getBlockPos(), SoundEvents.UI_STONECUTTER_TAKE_RESULT, SoundSource.BLOCKS, 1.0F, world.getRandom().nextFloat() * 0.4F + 0.8F);
                     player.swing(InteractionHand.OFF_HAND);
-                    player.getOffhandItem().hurtAndBreak(1, player, (plr) -> plr.broadcastBreakEvent(InteractionHand.OFF_HAND));
+                    player.getOffhandItem().hurtAndBreak(1, player, EquipmentSlot.OFFHAND);
                 }
             }
             ItemStack stack = player.getItemInHand(hand);
@@ -343,7 +344,7 @@ public class EcologicsFabric implements ModInitializer {
             BiomeModifications.addFeature(
                     (biomeSelector) -> biomeSelector.getBiomeKey().equals(Biomes.BEACH),
                     GenerationStep.Decoration.VEGETAL_DECORATION,
-                    getPlacedFeatureKey("trees_beach")
+                    getPlacedFeatureKey("coconut")
             );
         }
         if (config.beach.generateSeashells) {
@@ -378,7 +379,7 @@ public class EcologicsFabric implements ModInitializer {
 
     public void replaceFeatures() {
         ModConfigFabric config = AutoConfig.getConfigHolder(ModConfigFabric.class).getConfig();
-        BiomeModifications.create(new ResourceLocation(Ecologics.MOD_ID, "remove_azalea_trees")).add(ModificationPhase.REPLACEMENTS, biomeSelectionContext -> (biomeSelectionContext.getBiomeKey().equals(Biomes.LUSH_CAVES)), (c) -> {
+        BiomeModifications.create(ResourceLocation.fromNamespaceAndPath(Ecologics.MOD_ID, "remove_azalea_trees")).add(ModificationPhase.REPLACEMENTS, biomeSelectionContext -> (biomeSelectionContext.getBiomeKey().equals(Biomes.LUSH_CAVES)), (c) -> {
             if (config.lushCaves.replaceAzaleaTree) {
                 c.getGenerationSettings().removeFeature(CavePlacements.ROOTED_AZALEA_TREE);
                 c.getGenerationSettings().addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, getPlacedFeatureKey("rooted_azalea_tree"));
@@ -388,10 +389,10 @@ public class EcologicsFabric implements ModInitializer {
                 c.getGenerationSettings().addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, getPlacedFeatureKey("surface_moss_patch"));
             }
         });
-        BiomeModifications.create(new ResourceLocation(Ecologics.MOD_ID, "remove_oak_trees")).add(ModificationPhase.REPLACEMENTS, biomeSelectionContext -> (biomeSelectionContext.getBiomeKey().equals(Biomes.PLAINS)), (c) -> {
+        BiomeModifications.create(ResourceLocation.fromNamespaceAndPath(Ecologics.MOD_ID, "remove_oak_trees")).add(ModificationPhase.REPLACEMENTS, biomeSelectionContext -> (biomeSelectionContext.getBiomeKey().equals(Biomes.PLAINS)), (c) -> {
             if (config.plains.generateWalnutTrees) {
                 c.getGenerationSettings().removeFeature(VegetationPlacements.TREES_PLAINS);
-                c.getGenerationSettings().addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, getPlacedFeatureKey("trees_walnut"));
+                c.getGenerationSettings().addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, getPlacedFeatureKey("walnut"));
             }
         });
     }
@@ -431,6 +432,6 @@ public class EcologicsFabric implements ModInitializer {
     }
 
     private ResourceKey<PlacedFeature> getPlacedFeatureKey(String key) {
-        return ResourceKey.create(Registries.PLACED_FEATURE, new ResourceLocation(Ecologics.MOD_ID, key));
+        return ResourceKey.create(Registries.PLACED_FEATURE, ResourceLocation.fromNamespaceAndPath(Ecologics.MOD_ID, key));
     }
 }
