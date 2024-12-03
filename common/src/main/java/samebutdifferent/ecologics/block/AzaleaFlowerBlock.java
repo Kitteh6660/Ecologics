@@ -21,12 +21,18 @@ import samebutdifferent.ecologics.block.grower.ModTreeGrower;
 
 public class AzaleaFlowerBlock extends BushBlock implements BonemealableBlock 
 {
+	public static final MapCodec<AzaleaFlowerBlock> CODEC = AzaleaFlowerBlock.simpleCodec(AzaleaFlowerBlock::new);
     private static final TreeGrower TREE_GROWER = ModTreeGrower.AZALEA;
     protected static final VoxelShape SHAPE = Block.box(5.0D, 0.0D, 5.0D, 11.0D, 10.0D, 11.0D);
 
-    public AzaleaFlowerBlock() {
-        super(Properties.of().instabreak().noCollission().sound(SoundType.GRASS).offsetType(OffsetType.XZ));
+    public AzaleaFlowerBlock(Properties properties) {
+        super(properties);
     }
+    
+	@Override
+	protected MapCodec<? extends AzaleaFlowerBlock> codec() {
+		return CODEC;
+	}
 
     @Override
     public VoxelShape getShape(BlockState state, BlockGetter getter, BlockPos pos, CollisionContext context) {
@@ -49,8 +55,5 @@ public class AzaleaFlowerBlock extends BushBlock implements BonemealableBlock
         TREE_GROWER.growTree(serverWorld, serverWorld.getChunkSource().getGenerator(), pos, state, random);
     }
 
-	@Override
-	protected MapCodec<? extends BushBlock> codec() {
-		return null;
-	}
+
 }

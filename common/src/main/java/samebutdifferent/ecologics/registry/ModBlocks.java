@@ -22,6 +22,7 @@ import net.minecraft.world.level.block.StairBlock;
 import net.minecraft.world.level.block.TrapDoorBlock;
 import net.minecraft.world.level.block.WallBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.BlockBehaviour.OffsetType;
 import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
 import net.minecraft.world.level.block.state.properties.WoodType;
@@ -92,10 +93,8 @@ public class ModBlocks
     public static final Block FLOWERING_AZALEA_TRAPDOOR = registerBlock("flowering_azalea_trapdoor", new TrapDoorBlock(BlockSetType.OAK, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_TRAPDOOR)){});
     public static final Block AZALEA_BUTTON = registerBlock("azalea_button", new ButtonBlock(BlockSetType.OAK, 30, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_BUTTON)) {});
     public static final Block AZALEA_PRESSURE_PLATE = registerBlock("azalea_pressure_plate", new PressurePlateBlock(BlockSetType.OAK, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_PRESSURE_PLATE)) {});
-    public static final Block AZALEA_FLOWER = registerBlock("azalea_flower", new AzaleaFlowerBlock());
-    public static final Block SURFACE_MOSS = registerBlock("surface_moss", new SurfaceMossBlock(Properties.of().mapColor(MapColor.COLOR_GREEN).noCollission().strength(0.2F).pushReaction(PushReaction.DESTROY).sound(SoundType.MOSS_CARPET).noOcclusion()));
-    public static final Block MOSS_LAYER = registerBlock("moss_layer", new MossLayerBlock());
-    public static final Block POTTED_AZALEA_FLOWER = registerBlock("potted_azalea_flower", new FlowerPotBlock(ModBlocks.AZALEA_FLOWER, BlockBehaviour.Properties.of().instabreak().noOcclusion()));
+    public static final Block AZALEA_FLOWER = registerBlock("azalea_flower", new AzaleaFlowerBlock(Properties.of().instabreak().noCollission().sound(SoundType.GRASS).offsetType(OffsetType.XZ)));
+    public static final Block POTTED_AZALEA_FLOWER = registerBlock("potted_azalea_flower", new FlowerPotBlock(ModBlocks.AZALEA_FLOWER, BlockBehaviour.Properties.of().instabreak().noOcclusion()), false);
     public static final Block AZALEA_SIGN = registerBlock("azalea_sign", new ModStandingSignBlock(ModWoodType.AZALEA, BlockBehaviour.Properties.of().noCollission().strength(1.0F).sound(SoundType.WOOD)), false);
     public static final Block AZALEA_WALL_SIGN = registerBlock("azalea_wall_sign", new ModWallSignBlock(ModWoodType.AZALEA, BlockBehaviour.Properties.of().noCollission().strength(1.0F).sound(SoundType.WOOD).dropsLike(AZALEA_SIGN)), false);
     public static final Block AZALEA_HANGING_SIGN = registerBlock("azalea_hanging_sign", new ModCeilingHangingSignBlock(ModWoodType.AZALEA, BlockBehaviour.Properties.of().noCollission().strength(1.0F).sound(SoundType.WOOD)), false);
@@ -168,10 +167,13 @@ public class ModBlocks
     public static final Block SNOW_BRICK_WALL = registerBlock("snow_brick_wall", new WallBlock(BlockBehaviour.Properties.ofFullCopy(SNOW_BRICKS)));
 
     // Miscellaneous
+    public static final Block SURFACE_MOSS = registerBlock("surface_moss", new SurfaceMossBlock(Properties.of().mapColor(MapColor.COLOR_GREEN).noCollission().strength(0.2F).pushReaction(PushReaction.DESTROY).sound(SoundType.MOSS_CARPET).noOcclusion()));
+    public static final Block MOSS_LAYER = registerBlock("moss_layer", new MossLayerBlock());
+
     public static final Block HANGING_COCONUT = registerBlock("hanging_coconut", new HangingCoconutBlock(Properties.of().randomTicks().strength(2.0F, 3.0F).pushReaction(PushReaction.DESTROY).sound(SoundType.WOOD).noOcclusion()), false);
     public static final Block COCONUT = registerBlock("coconut", new CoconutBlock());
-    public static final Block SANDCASTLE = registerBlock("sandcastle", new SandcastleBlock(Properties.of().mapColor(MapColor.SAND).strength(0.7F).sound(SoundType.SAND).pushReaction(PushReaction.DESTROY).noOcclusion().randomTicks()));
-    public static final Block PRICKLY_PEAR = registerBlock("prickly_pear", new PricklyPearBlock());
+    public static final Block SANDCASTLE = registerBlock("sandcastle", new SandcastleBlock(Properties.of().mapColor(MapColor.SAND).strength(0.7F).sound(SoundType.SAND).pushReaction(PushReaction.DESTROY).noOcclusion().randomTicks()), false);
+    public static final Block PRICKLY_PEAR = registerBlock("prickly_pear", new PricklyPearBlock(), false);
     public static final Block POT = registerBlock("pot", new PotBlock(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_ORANGE).requiresCorrectToolForDrops().strength(1.0F)));
     public static final Block THIN_ICE = registerBlock("thin_ice", new ThinIceBlock());
     
