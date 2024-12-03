@@ -14,6 +14,7 @@ import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.ShearsItem;
 import net.minecraft.world.item.SignItem;
 import net.minecraft.world.item.SpawnEggItem;
+import net.minecraft.world.item.Item.Properties;
 import net.minecraft.world.level.block.Block;
 import oshi.util.tuples.Pair;
 import oshi.util.tuples.Triplet;
@@ -49,7 +50,7 @@ public class ModItems
     public static final Item COCONUT_SLICE = registerItem("coconut_slice", new CoconutSliceItem(new Item.Properties().food(Foods.SWEET_BERRIES)));
     public static final Item CRAB_MEAT = registerItem("crab_meat", new Item(new Item.Properties().food(Foods.COOKED_RABBIT)));
     public static final Item TROPICAL_STEW = registerItem("tropical_stew", new CoconutSliceItem(new Item.Properties().stacksTo(1).food(Foods.RABBIT_STEW)));
-    public static final Item PRICKLY_PEAR = registerItem("prickly_pear", new PricklyPearItem());
+    public static final Item PRICKLY_PEAR = registerItem("prickly_pear", new Item(new Item.Properties().food(Foods.APPLE))); //PricklyPearItem
     public static final Item COOKED_PRICKLY_PEAR = registerItem("cooked_prickly_pear", new Item(new Item.Properties().food(Foods.APPLE)));
     public static final Item WALNUT = registerItem("walnut", new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(1).saturationModifier(0.0F).fast().build())));
     
