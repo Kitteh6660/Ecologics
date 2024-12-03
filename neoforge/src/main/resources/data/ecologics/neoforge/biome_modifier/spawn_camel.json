@@ -1,8 +1,8 @@
 {
-  "type": "forge:add_spawns",
+  "type": "neoforge:add_spawns",
   "biomes": "minecraft:desert",
   "spawners": {
-    "type": "ecologics:camel",
+    "type": "minecraft:camel",
     "weight": 1,
     "minCount": 1,
     "maxCount": 1
