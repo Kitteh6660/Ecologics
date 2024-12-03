@@ -11,20 +11,23 @@ import oshi.util.tuples.Pair;
 import samebutdifferent.ecologics.Ecologics;
 import samebutdifferent.ecologics.effect.SlipperyMobEffect;
 
+import net.minecraft.world.effect.MobEffects;
+
 public class ModMobEffects 
 {
     public static void init() {
     	for (Pair<ResourceLocation, MobEffect> registry : MOB_EFFECTS) {
-    		Registry.register(BuiltInRegistries.MOB_EFFECT, registry.getA(), registry.getB());
+    		Registry.registerForHolder(BuiltInRegistries.MOB_EFFECT, registry.getA(), registry.getB());
     	}
     }
     
-    public static MobEffect registerMobEffect(String name, MobEffect effect) {
-    	MOB_EFFECTS.add(new Pair(ResourceLocation.fromNamespaceAndPath(Ecologics.MOD_ID, name), effect));
-    	return effect;
+    public static Holder<MobEffect> registerMobEffect(String name, MobEffect effect) {
+    	// MOB_EFFECTS.add(new Pair(ResourceLocation.fromNamespaceAndPath(Ecologics.MOD_ID, name), effect));
+    	// return Holder.direct(effect);
+    	return Registry.registerForHolder(BuiltInRegistries.MOB_EFFECT, ResourceLocation.fromNamespaceAndPath(Ecologics.MOD_ID, name), effect);
     }
 
     public static final ArrayList<Pair<ResourceLocation, MobEffect>> MOB_EFFECTS = new ArrayList();
     
-    public static final Holder<MobEffect> SLIPPERY = Holder.direct(registerMobEffect("slippery", new SlipperyMobEffect()));
+    public static final Holder<MobEffect> SLIPPERY = registerMobEffect("slippery", new SlipperyMobEffect());
 }

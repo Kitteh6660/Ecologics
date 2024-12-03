@@ -22,13 +22,14 @@ public class ModPotions
     	}
     }
     
-    public static Potion registerPotion(String name, Potion potion) {
-    	POTIONS.add(new Pair(ResourceLocation.fromNamespaceAndPath(Ecologics.MOD_ID, name), potion));
-    	return potion;
+    public static Holder<Potion> registerPotion(String name, Potion potion) {
+    	//POTIONS.add(new Pair(ResourceLocation.fromNamespaceAndPath(Ecologics.MOD_ID, name), potion));
+    	//return potion;
+    	return Registry.registerForHolder(BuiltInRegistries.POTION, ResourceLocation.fromNamespaceAndPath(Ecologics.MOD_ID, name), potion);
     }
     
     public static final ArrayList<Pair<ResourceLocation, Potion>> POTIONS = new ArrayList();
 
-    public static final Holder<Potion> SLIDING = Holder.direct(registerPotion("sliding", new Potion(new MobEffectInstance(ModMobEffects.SLIPPERY, 3600))));
-    public static final Holder<Potion> LONG_SLIDING = Holder.direct(registerPotion("long_sliding", new Potion("sliding", new MobEffectInstance(ModMobEffects.SLIPPERY, 9600))));
+    public static final Holder<Potion> SLIDING = registerPotion("sliding", new Potion(new MobEffectInstance(ModMobEffects.SLIPPERY, 3600)));
+    public static final Holder<Potion> LONG_SLIDING = registerPotion("long_sliding", new Potion("sliding", new MobEffectInstance(ModMobEffects.SLIPPERY, 9600)));
 }
