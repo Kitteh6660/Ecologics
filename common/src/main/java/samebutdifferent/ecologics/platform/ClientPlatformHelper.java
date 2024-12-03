@@ -13,19 +13,20 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.properties.WoodType;
 
-public class ClientPlatformHelper {
+public class ClientPlatformHelper 
+{
     @ExpectPlatform
-    public static <T extends BlockEntity> void registerBlockEntityRenderer(Supplier<BlockEntityType<T>> type, BlockEntityRendererProvider<T> renderProvider) {
+    public static <T extends BlockEntity> void registerBlockEntityRenderer(BlockEntityType<T> type, BlockEntityRendererProvider<T> renderProvider) {
         throw new AssertionError();
     }
 
     @ExpectPlatform
-    public static <T extends Block> void setRenderLayer(Supplier<T> block, RenderType type) {
+    public static <T extends Block> void setRenderLayer(Block block, RenderType type) {
         throw new AssertionError();
     }
 
     @ExpectPlatform
-    public static <T extends Entity> void registerEntityRenderer(Supplier<EntityType<T>> type, EntityRendererProvider<T> renderProvider) {
+    public static <T extends Entity> void registerEntityRenderer(EntityType<T> type, EntityRendererProvider<T> renderProvider) {
         throw new AssertionError();
     }
 

@@ -32,7 +32,7 @@ public class FloweringAzaleaLogBlock extends RotatedPillarBlock {
         if (itemstack.is(Items.SHEARS)) {
             if (!world.isClientSide) {
                 Direction direction = hitResult.getDirection().getAxis() == Direction.Axis.Y ? player.getDirection().getOpposite() : hitResult.getDirection();
-                shearAzalea(world, player, pos, itemstack, hand, direction, (Objects.equals(this.getName(), ModBlocks.FLOWERING_AZALEA_LOG.get().getName()) ? ModBlocks.AZALEA_LOG.get() : ModBlocks.AZALEA_WOOD.get()).defaultBlockState().setValue(RotatedPillarBlock.AXIS, state.getValue(AXIS)));
+                shearAzalea(world, player, pos, itemstack, hand, direction, (Objects.equals(this.getName(), ModBlocks.FLOWERING_AZALEA_LOG.getName()) ? ModBlocks.AZALEA_LOG : ModBlocks.AZALEA_WOOD).defaultBlockState().setValue(RotatedPillarBlock.AXIS, state.getValue(AXIS)));
             }
 
             return ItemInteractionResult.sidedSuccess(world.isClientSide);
@@ -44,7 +44,7 @@ public class FloweringAzaleaLogBlock extends RotatedPillarBlock {
     public static void shearAzalea(Level world, Player player, BlockPos pos, ItemStack stack, InteractionHand hand, Direction direction, BlockState replacementState) {
         world.playSound(null, pos, SoundEvents.FLOWERING_AZALEA_BREAK, SoundSource.BLOCKS, 1.0F, 1.0F);
         world.setBlock(pos, replacementState, 11);
-        ItemEntity itementity = new ItemEntity(world, (double) pos.getX() + 0.5D + (double) direction.getStepX() * 0.65D, (double) pos.getY() + 0.1D, (double) pos.getZ() + 0.5D + (double) direction.getStepZ() * 0.65D, new ItemStack(ModBlocks.AZALEA_FLOWER.get().asItem()));
+        ItemEntity itementity = new ItemEntity(world, (double) pos.getX() + 0.5D + (double) direction.getStepX() * 0.65D, (double) pos.getY() + 0.1D, (double) pos.getZ() + 0.5D + (double) direction.getStepZ() * 0.65D, new ItemStack(ModBlocks.AZALEA_FLOWER.asItem()));
         itementity.setDeltaMovement(0.05D * (double) direction.getStepX() + world.random.nextDouble() * 0.02D, 0.05D, 0.05D * (double) direction.getStepZ() + world.random.nextDouble() * 0.02D);
         world.addFreshEntity(itementity);
         stack.hurtAndBreak(1, player, EquipmentSlot.MAINHAND);

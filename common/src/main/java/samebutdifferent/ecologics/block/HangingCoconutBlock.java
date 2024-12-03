@@ -52,7 +52,7 @@ public class HangingCoconutBlock extends FallingBlock implements BonemealableBlo
     @Override
     public boolean canSurvive(BlockState pState, LevelReader pLevel, BlockPos pPos) {
         BlockState aboveState = pLevel.getBlockState(pPos.above());
-        return aboveState.is(ModBlocks.COCONUT_LEAVES.get());
+        return aboveState.is(ModBlocks.COCONUT_LEAVES);
     }
 
     @Override
@@ -153,9 +153,9 @@ public class HangingCoconutBlock extends FallingBlock implements BonemealableBlo
 
     @Override
     public void onBrokenAfterFall(Level pLevel, BlockPos pPos, FallingBlockEntity pFallingBlock) {
-        pLevel.playSound(null, pPos, ModSoundEvents.COCONUT_SMASH.get(), SoundSource.BLOCKS, 0.7f, 0.9f + pLevel.getRandom().nextFloat() * 0.2f);
+        pLevel.playSound(null, pPos, ModSoundEvents.COCONUT_SMASH, SoundSource.BLOCKS, 0.7f, 0.9f + pLevel.getRandom().nextFloat() * 0.2f);
         if (pLevel.random.nextFloat() <= ConfigPlatformHelper.coconutCrabSpawnChance()) {
-            CoconutCrab coconutCrab = ModEntityTypes.COCONUT_CRAB.get().create(pLevel);
+            CoconutCrab coconutCrab = ModEntityTypes.COCONUT_CRAB.create(pLevel);
             coconutCrab.setPos(pPos.getX(), pPos.getY(), pPos.getZ());
             pLevel.addFreshEntity(coconutCrab);
         } else {

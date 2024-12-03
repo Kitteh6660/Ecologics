@@ -3,8 +3,6 @@ package samebutdifferent.ecologics.platform.neoforge;
 import java.util.Map;
 import java.util.function.Supplier;
 
-import com.google.common.collect.ImmutableMap;
-
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.sounds.SoundEvent;
@@ -20,7 +18,9 @@ import net.minecraft.world.item.SpawnEggItem;
 import net.minecraft.world.item.alchemy.Potion;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.ComposterBlock;
+import net.minecraft.world.level.block.FireBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
@@ -31,16 +31,14 @@ import net.minecraft.world.level.levelgen.feature.foliageplacers.FoliagePlacer;
 import net.minecraft.world.level.levelgen.feature.foliageplacers.FoliagePlacerType;
 import net.minecraft.world.level.levelgen.feature.trunkplacers.TrunkPlacer;
 import net.minecraft.world.level.levelgen.feature.trunkplacers.TrunkPlacerType;
-import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.common.DeferredSpawnEggItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import samebutdifferent.ecologics.Ecologics;
-import samebutdifferent.ecologics.mixin.neoforge.AxeItemAccessor;
-import samebutdifferent.ecologics.mixin.neoforge.FireBlockAccessor;
 import samebutdifferent.ecologics.platform.CommonPlatformHelper;
 
-@EventBusSubscriber(modid = Ecologics.MOD_ID, bus = EventBusSubscriber.Bus.MOD)
-public class CommonPlatformHelperImpl {
+// @EventBusSubscriber(modid = Ecologics.MOD_ID, bus = EventBusSubscriber.Bus.MOD)
+public class CommonPlatformHelperImpl 
+{
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(BuiltInRegistries.BLOCK, Ecologics.MOD_ID);
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(BuiltInRegistries.ITEM, Ecologics.MOD_ID);
     public static final DeferredRegister<SoundEvent> SOUND_EVENTS = DeferredRegister.create(BuiltInRegistries.SOUND_EVENT, Ecologics.MOD_ID);
@@ -52,7 +50,7 @@ public class CommonPlatformHelperImpl {
     public static final DeferredRegister<MobEffect> MOB_EFFECTS = DeferredRegister.create(BuiltInRegistries.MOB_EFFECT, Ecologics.MOD_ID);
     public static final DeferredRegister<Feature<?>> FEATURES = DeferredRegister.create(BuiltInRegistries.FEATURE, Ecologics.MOD_ID);
 
-    public static <T extends Block> Supplier<T> registerBlock(String name, Supplier<T> block) {
+    /*public static <T extends Block> Supplier<T> registerBlock(String name, Supplier<T> block) {
         return BLOCKS.register(name, block);
     }
 
@@ -84,9 +82,9 @@ public class CommonPlatformHelperImpl {
         return POTIONS.register(name, potion);
     }
 
-    /*public static void registerBrewingRecipe(Holder<Potion> input, Item ingredient, Holder<Potion> output) {
-        BrewingRecipeRegistry.addRecipe(new ModBrewingRecipe(input, ingredient, output));
-    }*/
+    public static void registerBrewingRecipe(Holder<Potion> input, Item ingredient, Holder<Potion> output) {
+        // BrewingRecipeRegistry.addRecipe(new BrewingRecipe(Ingredient.of(input), ingredient, Ingredient.of(output)));
+    }
 
     public static <T extends FoliagePlacer> Supplier<FoliagePlacerType<T>> registerFoliagePlacerType(String name, Supplier<FoliagePlacerType<T>> foliagePlacerType) {
         return FOLIAGE_PLACER_TYPES.register(name, foliagePlacerType);
@@ -94,23 +92,23 @@ public class CommonPlatformHelperImpl {
 
     public static <T extends TrunkPlacer> Supplier<TrunkPlacerType<T>> registerTrunkPlacerType(String name, Supplier<TrunkPlacerType<T>> trunkPlacerType) {
         return TRUNK_PLACER_TYPES.register(name, trunkPlacerType);
+    }*/
+
+    public static void setFlammable(Block fireBlock, Block block, int encouragement, int flammability) {
+    	((FireBlock)Blocks.FIRE).setFlammable(block, encouragement, flammability);
     }
 
-    public static <T extends Block> void setFlammable(Block fireBlock, Supplier<T> block, int encouragement, int flammability) {
-        ((FireBlockAccessor)fireBlock).invokeSetFlammable(block.get(), encouragement, flammability);
-    }
-
-    public static <T extends MobEffect> Supplier<T> registerMobEffect(String name, Supplier<T> mobEffect) {
+    /*public static <T extends MobEffect> Supplier<T> registerMobEffect(String name, Supplier<T> mobEffect) {
         return MOB_EFFECTS.register(name, mobEffect);
     }
 
     public static <T extends Feature<?>> Supplier<T> registerFeature(String name, Supplier<T> feature) {
         return FEATURES.register(name, feature);
-    }
-
-    /*public static <T extends Mob> void registerSpawnPlacement(EntityType<T> entityType, SpawnPlacementType decoratorType, Heightmap.Types heightMapType, SpawnPlacements.SpawnPredicate<T> decoratorPredicate) {
-        SpawnPlacements.register(entityType, decoratorType, heightMapType, decoratorPredicate);
     }*/
+
+    public static <T extends Mob> void registerSpawnPlacement(EntityType<T> entityType, SpawnPlacementType decoratorType, Heightmap.Types heightMapType, SpawnPlacements.SpawnPredicate<T> decoratorPredicate) {
+        // SpawnPlacements.register(entityType, decoratorType, heightMapType, decoratorPredicate);
+    }
 
     public static WoodType createWoodType(String name, BlockSetType setType) {
         return new WoodType(name, setType);
@@ -125,8 +123,8 @@ public class CommonPlatformHelperImpl {
     }
 
     public static void registerStrippables(Map<Block, Block> blockMap) {
-        Map<Block, Block> strippables = new ImmutableMap.Builder<Block, Block>().putAll(AxeItemAccessor.getStrippables()).putAll(blockMap).build();
-        AxeItemAccessor.setStrippables(strippables);
+        // Map<Block, Block> strippables = new ImmutableMap.Builder<Block, Block>().putAll(AxeItemAccessor.getStrippables()).putAll(blockMap).build();
+        // AxeItemAccessor.setStrippables(strippables);
     }
 
     //TODO: Replace or remove this.

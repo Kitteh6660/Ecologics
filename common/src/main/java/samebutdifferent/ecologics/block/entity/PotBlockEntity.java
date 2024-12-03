@@ -16,7 +16,7 @@ public class PotBlockEntity extends BlockEntity implements Clearable {
     private NonNullList<ItemStack> items = NonNullList.withSize(9, ItemStack.EMPTY);
 
     public PotBlockEntity(BlockPos pWorldPosition, BlockState pBlockState) {
-        super(ModBlockEntityTypes.POT.get(), pWorldPosition, pBlockState);
+        super(ModBlockEntityTypes.POT, pWorldPosition, pBlockState);
     }
 
     public NonNullList<ItemStack> getItems() {

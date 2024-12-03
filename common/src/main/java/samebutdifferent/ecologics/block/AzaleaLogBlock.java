@@ -25,7 +25,7 @@ public class AzaleaLogBlock extends RotatedPillarBlock {
     @Override
     public void randomTick(BlockState state, ServerLevel world, BlockPos pos, RandomSource random) {
         if (random.nextInt(25) == 0) {
-            world.setBlock(pos, ModBlocks.FLOWERING_AZALEA_LOG.get().defaultBlockState().setValue(RotatedPillarBlock.AXIS, state.getValue(AXIS)), 2);
+            world.setBlock(pos, ModBlocks.FLOWERING_AZALEA_LOG.defaultBlockState().setValue(RotatedPillarBlock.AXIS, state.getValue(AXIS)), 2);
         }
     }
 

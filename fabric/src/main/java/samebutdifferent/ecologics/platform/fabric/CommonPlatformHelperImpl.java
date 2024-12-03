@@ -7,6 +7,7 @@ import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityT
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityType;
 import net.fabricmc.fabric.api.registry.CompostingChanceRegistry;
+import net.fabricmc.fabric.api.registry.FabricBrewingRecipeRegistryBuilder;
 import net.fabricmc.fabric.api.registry.FlammableBlockRegistry;
 import net.fabricmc.fabric.api.registry.StrippableBlockRegistry;
 import net.minecraft.core.Holder;
@@ -26,6 +27,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.JukeboxPlayable;
 import net.minecraft.world.item.SpawnEggItem;
 import net.minecraft.world.item.alchemy.Potion;
+import net.minecraft.world.item.alchemy.PotionBrewing;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -46,7 +48,8 @@ import samebutdifferent.ecologics.mixin.fabric.WoodTypeAccessor;
 import samebutdifferent.ecologics.platform.CommonPlatformHelper;
 
 public class CommonPlatformHelperImpl {
-    public static <T extends Block> Supplier<T> registerBlock(String name, Supplier<T> block) {
+    /*public static <T extends Block> Supplier<T> registerBlock(String name, Supplier<T> block) {
+    	Ecologics.LOGGER.info("This shouldn't be called.");
         T registry = Registry.register(BuiltInRegistries.BLOCK, ResourceLocation.fromNamespaceAndPath(Ecologics.MOD_ID, name), block.get());
         return () -> registry;
     }
@@ -84,9 +87,10 @@ public class CommonPlatformHelperImpl {
         return () -> registry;
     }
 
-    /*public static void registerBrewingRecipe(Holder<Potion> input, Item ingredient, Holder<Potion> output) {
-        PotionBrewingAccessor.invokeAddMix(input, ingredient, output);
-    }*/
+    public static void registerBrewingRecipe(Holder<Potion> input, Item ingredient, Holder<Potion> output) {
+        // PotionBrewing potionBrewing = new PotionBrewing(input, ingredient, output);
+		// potionBrewing.addVanillaMixes(PotionBrewing.Builder.addMix(input, ingredient, output)); // .invokeAddMix(input, ingredient, output);
+    }
 
     public static <T extends FoliagePlacer> Supplier<FoliagePlacerType<T>> registerFoliagePlacerType(String name, Supplier<FoliagePlacerType<T>> foliagePlacerType) {
         FoliagePlacerType<T> registry = Registry.register(BuiltInRegistries.FOLIAGE_PLACER_TYPE, ResourceLocation.fromNamespaceAndPath(Ecologics.MOD_ID, name), foliagePlacerType.get());
@@ -96,13 +100,13 @@ public class CommonPlatformHelperImpl {
     public static <T extends TrunkPlacer> Supplier<TrunkPlacerType<T>> registerTrunkPlacerType(String name, Supplier<TrunkPlacerType<T>> trunkPlacerType) {
         TrunkPlacerType<T> registry = Registry.register(BuiltInRegistries.TRUNK_PLACER_TYPE, ResourceLocation.fromNamespaceAndPath(Ecologics.MOD_ID, name), trunkPlacerType.get());
         return () -> registry;
+    }*/
+
+    public static void setFlammable(Block fireBlock, Block block, int encouragement, int flammability) {
+        FlammableBlockRegistry.getInstance(fireBlock).add(block, encouragement, flammability);
     }
 
-    public static <T extends Block> void setFlammable(Block fireBlock, Supplier<T> block, int encouragement, int flammability) {
-        FlammableBlockRegistry.getInstance(fireBlock).add(block.get(), encouragement, flammability);
-    }
-
-    public static <T extends MobEffect> Supplier<T> registerMobEffect(String name, Supplier<T> mobEffect) {
+    /*public static <T extends MobEffect> Supplier<T> registerMobEffect(String name, Supplier<T> mobEffect) {
         T registry = Registry.register(BuiltInRegistries.MOB_EFFECT, ResourceLocation.fromNamespaceAndPath(Ecologics.MOD_ID, name), mobEffect.get());
         return () -> registry;
     }
@@ -110,7 +114,7 @@ public class CommonPlatformHelperImpl {
     public static <T extends Feature<?>> Supplier<T> registerFeature(String name, Supplier<T> feature) {
         T registry = Registry.register(BuiltInRegistries.FEATURE, ResourceLocation.fromNamespaceAndPath(Ecologics.MOD_ID, name), feature.get());
         return () -> registry;
-    }
+    }*/
 
     public static <T extends Mob> void registerSpawnPlacement(EntityType<T> entityType, SpawnPlacementType decoratorType, Heightmap.Types heightMapType, SpawnPlacements.SpawnPredicate<T> decoratorPredicate) {
         SpawnPlacementsAccessor.invokeRegister(entityType, decoratorType, heightMapType, decoratorPredicate);

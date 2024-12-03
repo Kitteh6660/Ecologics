@@ -24,7 +24,7 @@ public class CoconutFoliagePlacer extends FoliagePlacer {
 
     @Override
     protected FoliagePlacerType<?> type() {
-        return ModFoliagePlacerTypes.COCONUT_FOLIAGE_PLACER.get();
+        return ModFoliagePlacerTypes.COCONUT_FOLIAGE_PLACER;
     }
 
     @Override
@@ -57,12 +57,12 @@ public class CoconutFoliagePlacer extends FoliagePlacer {
 
         if (pRandom.nextInt(2) == 0) {
             if (pLevel.isStateAtPosition(pos.below(), BlockBehaviour.BlockStateBase::isAir)) {
-                pBlockSetter.set(pos.below(), ModBlocks.HANGING_COCONUT.get().defaultBlockState());
+                pBlockSetter.set(pos.below(), ModBlocks.HANGING_COCONUT.defaultBlockState());
             }
         }
         if (pRandom.nextInt(2) == 0) {
             if (pLevel.isStateAtPosition(pos.below().relative(direction.getCounterClockWise()), BlockBehaviour.BlockStateBase::isAir)) {
-                pBlockSetter.set(pos.below().relative(direction.getCounterClockWise()), ModBlocks.HANGING_COCONUT.get().defaultBlockState());
+                pBlockSetter.set(pos.below().relative(direction.getCounterClockWise()), ModBlocks.HANGING_COCONUT.defaultBlockState());
             }
         }
 

@@ -37,6 +37,7 @@ import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.GameRules;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import samebutdifferent.ecologics.registry.ModItems;
@@ -101,11 +102,12 @@ public class CoconutCrab extends Animal implements NeutralMob {
         this.setHasCoconut(false);
         this.stopBeingAngry();
         this.playCoconutSmashSound();
-        ItemEntity itementity = new ItemEntity(this.level(), this.getX(), this.getY(), this.getZ(), new ItemStack(ModItems.COCONUT_SLICE.get(), 2));
-        itementity.setDefaultPickUpDelay();
-        this.level().addFreshEntity(itementity);
+        if (this.level().getGameRules().getRule(GameRules.RULE_DOMOBLOOT).get()) {
+	        ItemEntity itementity = new ItemEntity(this.level(), this.getX(), this.getY(), this.getZ(), new ItemStack(ModItems.COCONUT_SLICE, 2));
+	        itementity.setDefaultPickUpDelay();
+	        this.level().addFreshEntity(itementity);
+        }
     }
-
 
     /*@Override
     public boolean canBreatheUnderwater() {
@@ -160,17 +162,17 @@ public class CoconutCrab extends Animal implements NeutralMob {
 
     @Override
     protected SoundEvent getAmbientSound() {
-        return ModSoundEvents.COCONUT_CRAB_AMBIENT.get();
+        return ModSoundEvents.COCONUT_CRAB_AMBIENT;
     }
 
     @Override
     protected SoundEvent getHurtSound(DamageSource pDamageSource) {
-        return ModSoundEvents.COCONUT_CRAB_HURT.get();
+        return ModSoundEvents.COCONUT_CRAB_HURT;
     }
 
     @Override
     protected SoundEvent getDeathSound() {
-        return ModSoundEvents.COCONUT_CRAB_DEATH.get();
+        return ModSoundEvents.COCONUT_CRAB_DEATH;
     }
 
     @Override
@@ -179,7 +181,7 @@ public class CoconutCrab extends Animal implements NeutralMob {
     }
 
     protected void playCoconutSmashSound() {
-        this.playSound(ModSoundEvents.COCONUT_SMASH.get(), 0.7F, 1.0F);
+        this.playSound(ModSoundEvents.COCONUT_SMASH, 0.7F, 1.0F);
     }
 
     @Override

@@ -29,7 +29,7 @@ public class ThinIceBlock extends IceBlock {
     public static final IntegerProperty AGE = BlockStateProperties.AGE_3;
     
     public ThinIceBlock() {
-        super(Properties.of().friction(0.98F).strength(0.5F).sound(SoundType.GLASS).noOcclusion().isValidSpawn((state, blockGetter, pos, entityType) -> entityType.equals(EntityType.POLAR_BEAR) || entityType.equals(ModEntityTypes.PENGUIN.get())));
+        super(Properties.of().friction(0.98F).strength(0.5F).sound(SoundType.GLASS).noOcclusion().isValidSpawn((state, blockGetter, pos, entityType) -> entityType.equals(EntityType.POLAR_BEAR) || entityType.equals(ModEntityTypes.PENGUIN)));
         this.registerDefaultState(this.stateDefinition.any().setValue(AGE, 0));
     }
 
@@ -37,7 +37,7 @@ public class ThinIceBlock extends IceBlock {
     public void fallOn(Level pLevel, BlockState pState, BlockPos pPos, Entity pEntity, float pFallDistance) {
     	Holder<Enchantment> ffholder = pLevel.registryAccess().registry(Registries.ENCHANTMENT).get().getHolderOrThrow(Enchantments.FEATHER_FALLING);
         if (pEntity instanceof Player player && EnchantmentHelper.getEnchantmentLevel(ffholder, player) == 0) {
-            pLevel.playSound(null, pPos, ModSoundEvents.THIN_ICE_CRACK.get(), SoundSource.BLOCKS, 0.7F, 0.9F + pLevel.random.nextFloat() * 0.2F);
+            pLevel.playSound(null, pPos, ModSoundEvents.THIN_ICE_CRACK, SoundSource.BLOCKS, 0.7F, 0.9F + pLevel.random.nextFloat() * 0.2F);
             replaceIfThinIce(pPos, 3, pLevel);
             replaceIfThinIce(pPos.north(), 2, pLevel);
             replaceIfThinIce(pPos.east(), 2, pLevel);
@@ -52,8 +52,8 @@ public class ThinIceBlock extends IceBlock {
 
     private void replaceIfThinIce(BlockPos pPos, int age, Level pLevel) {
         BlockState state = pLevel.getBlockState(pPos);
-        if (state.is(ModBlocks.THIN_ICE.get())) {
-            pLevel.setBlock(pPos, ModBlocks.THIN_ICE.get().defaultBlockState().setValue(AGE, Math.min(state.getValue(AGE) + age, 3)), 2);
+        if (state.is(ModBlocks.THIN_ICE)) {
+            pLevel.setBlock(pPos, ModBlocks.THIN_ICE.defaultBlockState().setValue(AGE, Math.min(state.getValue(AGE) + age, 3)), 2);
         }
     }
 
@@ -68,7 +68,7 @@ public class ThinIceBlock extends IceBlock {
         int age = pState.getValue(AGE);
         if (age < 3) {
             pLevel.setBlock(pPos, pState.setValue(AGE, age + 1), 2);
-            pLevel.playSound(null, pPos, ModSoundEvents.THIN_ICE_CRACK.get(), SoundSource.BLOCKS, 0.7F, 0.9F + pLevel.random.nextFloat() * 0.2F);
+            pLevel.playSound(null, pPos, ModSoundEvents.THIN_ICE_CRACK, SoundSource.BLOCKS, 0.7F, 0.9F + pLevel.random.nextFloat() * 0.2F);
             return false;
         } else {
             pLevel.removeBlock(pPos, false);

@@ -38,7 +38,7 @@ public class ModChestBoat extends ModBoat implements HasCustomInventoryScreen, C
     }
 
     public ModChestBoat(Level level, double x, double y, double z) {
-        this(ModEntityTypes.CHEST_BOAT.get(), level);
+        this(ModEntityTypes.CHEST_BOAT, level);
         this.setPos(x, y, z);
         this.xo = x;
         this.yo = y;

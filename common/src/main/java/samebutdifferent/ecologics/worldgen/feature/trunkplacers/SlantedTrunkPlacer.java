@@ -29,7 +29,7 @@ public class SlantedTrunkPlacer extends TrunkPlacer
 
     @Override
     protected TrunkPlacerType<?> type() {
-        return ModTrunkPlacerTypes.SLANTED_TRUNK_PLACER.get();
+        return ModTrunkPlacerTypes.SLANTED_TRUNK_PLACER;
     }
 
     @Override

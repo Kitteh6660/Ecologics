@@ -29,7 +29,7 @@ public abstract class SheepMixin extends Animal implements Shearable {
     @Inject(at = @At("HEAD"), method = "mobInteract", cancellable = true)
     private void onMobInteract(Player player, InteractionHand hand, CallbackInfoReturnable<InteractionResult> cir) {
         ItemStack stack = player.getItemInHand(hand);
-        if (stack.is(ModItems.CRAB_CLAW.get())) {
+        if (stack.is(ModItems.CRAB_CLAW)) {
             if (!this.level().isClientSide() && this.readyForShearing()) {
                 this.shear(SoundSource.PLAYERS);
                 this.gameEvent(GameEvent.SHEAR, player);

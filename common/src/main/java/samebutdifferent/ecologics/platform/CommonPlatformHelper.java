@@ -33,8 +33,10 @@ import net.minecraft.world.level.levelgen.feature.foliageplacers.FoliagePlacerTy
 import net.minecraft.world.level.levelgen.feature.trunkplacers.TrunkPlacer;
 import net.minecraft.world.level.levelgen.feature.trunkplacers.TrunkPlacerType;
 
-public class CommonPlatformHelper {
-    @ExpectPlatform
+//TODO: Determine if this should be removed and replaced.
+public class CommonPlatformHelper 
+{
+    /*@ExpectPlatform
     public static <T extends Block> Supplier<T> registerBlock(String name, Supplier<T> block) {
         throw new AssertionError();
     }
@@ -75,14 +77,14 @@ public class CommonPlatformHelper {
     }
 
     @ExpectPlatform
-    public static <T extends Holder<Potion>> Supplier<T> registerPotion(String name, Supplier<T> potion) {
+    public static <T extends Potion> Supplier<T> registerPotion(String name, Supplier<T> potion) {
         throw new AssertionError();
     }
 
-    /*@ExpectPlatform
+    @ExpectPlatform
     public static void registerBrewingRecipe(Holder<Potion> awkward, Item ingredient, Holder<Potion> output) {
         throw new AssertionError();
-    }*/
+    }
 
     @ExpectPlatform
     public static <T extends FoliagePlacer> Supplier<FoliagePlacerType<T>> registerFoliagePlacerType(String name, Supplier<FoliagePlacerType<T>> foliagePlacerType) {
@@ -92,18 +94,18 @@ public class CommonPlatformHelper {
     @ExpectPlatform
     public static <T extends TrunkPlacer> Supplier<TrunkPlacerType<T>> registerTrunkPlacerType(String name, Supplier<TrunkPlacerType<T>> trunkPlacerType) {
         throw new AssertionError();
-    }
+    }*/
 
-    public static <T extends Block> void setFlammable(Supplier<T> block, int encouragement, int flammability) {
+    public static <T extends Block> void setFlammable(Block block, int encouragement, int flammability) {
         setFlammable(Blocks.FIRE, block, encouragement, flammability);
     }
 
     @ExpectPlatform
-    public static <T extends Block> void setFlammable(Block fireBlock, Supplier<T> block, int encouragement, int flammability) {
+    public static void setFlammable(Block fireBlock, Block block, int encouragement, int flammability) {
         throw new AssertionError();
     }
 
-    @ExpectPlatform
+    /*@ExpectPlatform
     public static <T extends MobEffect> Supplier<T> registerMobEffect(String name, Supplier<T> mobEffect) {
         throw new AssertionError();
     }
@@ -111,7 +113,7 @@ public class CommonPlatformHelper {
     @ExpectPlatform
     public static <T extends Feature<?>> Supplier<T> registerFeature(String name, Supplier<T> feature) {
         throw new AssertionError();
-    }
+    }*/
 
     @ExpectPlatform
     public static <T extends Mob> void registerSpawnPlacement(EntityType<T> entityType, SpawnPlacementType decoratorType, Heightmap.Types heightMapType, SpawnPlacements.SpawnPredicate<T> decoratorPredicate) {

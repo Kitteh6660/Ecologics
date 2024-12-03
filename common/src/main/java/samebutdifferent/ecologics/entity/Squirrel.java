@@ -22,11 +22,9 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.AgeableMob;
-import net.minecraft.world.entity.EntityDimensions;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.Mob;
-import net.minecraft.world.entity.Pose;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.BreedGoal;
@@ -110,7 +108,7 @@ public class Squirrel extends Animal {
     @Nullable
     @Override
     public AgeableMob getBreedOffspring(ServerLevel pLevel, AgeableMob pMob) {
-        return ModEntityTypes.SQUIRREL.get().create(pLevel);
+        return ModEntityTypes.SQUIRREL.create(pLevel);
     }
 
     @Override
@@ -272,17 +270,17 @@ public class Squirrel extends Animal {
 
     @Override
     protected SoundEvent getAmbientSound() {
-        return ModSoundEvents.SQUIRREL_AMBIENT.get();
+        return ModSoundEvents.SQUIRREL_AMBIENT;
     }
 
     @Override
     protected SoundEvent getHurtSound(DamageSource pDamageSource) {
-        return ModSoundEvents.SQUIRREL_HURT.get();
+        return ModSoundEvents.SQUIRREL_HURT;
     }
 
     @Override
     protected SoundEvent getDeathSound() {
-        return ModSoundEvents.SQUIRREL_DEATH.get();
+        return ModSoundEvents.SQUIRREL_DEATH;
     }
 
     static class SquirrelSearchForSaplingsGoal extends Goal {

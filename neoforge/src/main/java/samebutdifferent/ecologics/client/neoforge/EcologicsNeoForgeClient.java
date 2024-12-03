@@ -6,6 +6,7 @@ import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.renderer.BiomeColors;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
 import net.minecraft.client.renderer.blockentity.HangingSignRenderer;
+import net.minecraft.client.renderer.blockentity.SignRenderer;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.level.FoliageColor;
@@ -38,7 +39,7 @@ public class EcologicsNeoForgeClient {
 
     @SubscribeEvent
     public static void registerBlockColors(RegisterColorHandlersEvent.Block event) {
-        event.register((pState, pLevel, pPos, pTintIndex) -> pLevel != null && pPos != null ? BiomeColors.getAverageFoliageColor(pLevel, pPos) : FoliageColor.getDefaultColor(), ModBlocks.COCONUT_LEAVES.get());
+        event.register((pState, pLevel, pPos, pTintIndex) -> pLevel != null && pPos != null ? BiomeColors.getAverageFoliageColor(pLevel, pPos) : FoliageColor.getDefaultColor(), ModBlocks.COCONUT_LEAVES);
     }
 
     @SubscribeEvent
@@ -46,7 +47,7 @@ public class EcologicsNeoForgeClient {
         event.register((pStack, pTintIndex) -> {
             BlockState blockstate = ((BlockItem)pStack.getItem()).getBlock().defaultBlockState();
             return event.getBlockColors().getColor(blockstate, null, null, pTintIndex);
-        }, ModBlocks.COCONUT_LEAVES.get());
+        }, ModBlocks.COCONUT_LEAVES);
     }
 
     @SubscribeEvent
@@ -59,6 +60,5 @@ public class EcologicsNeoForgeClient {
             event.registerLayerDefinition(new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(Ecologics.MOD_ID, type.getModelLocation()), "main"), BoatModel::createBodyModel);
             event.registerLayerDefinition(new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(Ecologics.MOD_ID, type.getChestModelLocation()), "main"), ChestBoatModel::createBodyModel);
         }
-        BlockEntityRenderers.register(ModBlockEntityTypes.HANGING_SIGN.get(), HangingSignRenderer::new);
     }
 }

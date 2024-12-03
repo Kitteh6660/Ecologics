@@ -28,7 +28,7 @@ public abstract class CarpetBlockMixin extends Block {
     public ItemInteractionResult useItemOn(ItemStack item, BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
         if (ItemStack.isSameItem(Blocks.MOSS_CARPET.asItem().getDefaultInstance(), item) && (pPlayer.getInBlockState() != pState)) {
             if (pState.is(Blocks.MOSS_CARPET.defaultBlockState().getBlock())) {
-                if (!pLevel.isClientSide()) pLevel.setBlockAndUpdate(pPos, ModBlocks.MOSS_LAYER.get().defaultBlockState());
+                if (!pLevel.isClientSide()) pLevel.setBlockAndUpdate(pPos, ModBlocks.MOSS_LAYER.defaultBlockState());
                 if (!pPlayer.isCreative()) item.shrink(1);
             }
             pLevel.playSound(pPlayer, pPos, SoundEvents.MOSS_CARPET_PLACE, SoundSource.BLOCKS, 1.0F, 1.0F);

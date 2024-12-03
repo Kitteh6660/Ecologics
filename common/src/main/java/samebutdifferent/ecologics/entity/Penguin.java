@@ -147,7 +147,7 @@ public class Penguin extends Animal {
     @Nullable
     @Override
     public AgeableMob getBreedOffspring(ServerLevel level, AgeableMob mob) {
-        return ModEntityTypes.PENGUIN.get().create(level);
+        return ModEntityTypes.PENGUIN.create(level);
     }
 
     @Override
@@ -208,7 +208,7 @@ public class Penguin extends Animal {
     protected void ageBoundaryReached() {
         super.ageBoundaryReached();
         if (!this.isBaby() && this.level().getGameRules().getBoolean(GameRules.RULE_DOMOBLOOT)) {
-            this.spawnAtLocation(ModItems.PENGUIN_FEATHER.get(), 1);
+            this.spawnAtLocation(ModItems.PENGUIN_FEATHER, 1);
         }
     }
 
@@ -219,7 +219,7 @@ public class Penguin extends Animal {
                 if (!this.level().isClientSide()) {
                     ServerLevel level = (ServerLevel) this.level();
                     this.setPregnant(false);
-                    Penguin penguin = ModEntityTypes.PENGUIN.get().create(level);
+                    Penguin penguin = ModEntityTypes.PENGUIN.create(level);
                     penguin.setBaby(true);
                     penguin.moveTo(this.getX(), this.getY(), this.getZ(), 0.0F, 0.0F);
                     level.addFreshEntityWithPassengers(penguin);
@@ -317,17 +317,17 @@ public class Penguin extends Animal {
 
     @Override
     protected SoundEvent getAmbientSound() {
-        return ModSoundEvents.PENGUIN_AMBIENT.get();
+        return ModSoundEvents.PENGUIN_AMBIENT;
     }
 
     @Override
     protected SoundEvent getHurtSound(DamageSource pDamageSource) {
-        return ModSoundEvents.PENGUIN_HURT.get();
+        return ModSoundEvents.PENGUIN_HURT;
     }
 
     @Override
     protected SoundEvent getDeathSound() {
-        return ModSoundEvents.PENGUIN_DEATH.get();
+        return ModSoundEvents.PENGUIN_DEATH;
     }
 
     // ANIMATION
