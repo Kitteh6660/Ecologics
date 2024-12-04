@@ -1,16 +1,13 @@
 package samebutdifferent.ecologics.registry;
 
+import java.util.ArrayList;
+
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
-import net.minecraft.world.level.levelgen.feature.foliageplacers.FoliagePlacerType;
 import oshi.util.tuples.Pair;
 import samebutdifferent.ecologics.Ecologics;
-import samebutdifferent.ecologics.platform.CommonPlatformHelper;
-
-import java.util.ArrayList;
-import java.util.function.Supplier;
 
 public class ModSoundEvents 
 {
@@ -31,7 +28,7 @@ public class ModSoundEvents
     public static final SoundEvent COCONUT_CRAB_AMBIENT = registerSoundEvent("coconut_crab_ambient", SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(Ecologics.MOD_ID, "entity.coconut_crab.ambient")));
     public static final SoundEvent COCONUT_CRAB_DEATH = registerSoundEvent("coconut_crab_death", SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(Ecologics.MOD_ID, "entity.coconut_crab.death")));
     public static final SoundEvent COCONUT_CRAB_HURT = registerSoundEvent("coconut_crab_hurt", SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(Ecologics.MOD_ID, "entity.coconut_crab.hurt")));
-    public static final SoundEvent MUSIC_DISC_COCONUT = registerSoundEvent("music_disc_coconut", SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(Ecologics.MOD_ID, "music_disc.coconut")));
+    public static final SoundEvent MUSIC_DISC_COCONUT = registerSoundEvent("music_disc.coconut", SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(Ecologics.MOD_ID, "music_disc.coconut")));
     public static final SoundEvent THIN_ICE_CRACK = registerSoundEvent("thin_ice_crack", SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(Ecologics.MOD_ID, "block.thin_ice.crack")));
     public static final SoundEvent PENGUIN_AMBIENT = registerSoundEvent("penguin_ambient", SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(Ecologics.MOD_ID, "entity.penguin.ambient")));
     public static final SoundEvent PENGUIN_DEATH = registerSoundEvent("penguin_death", SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(Ecologics.MOD_ID, "entity.penguin.death")));
