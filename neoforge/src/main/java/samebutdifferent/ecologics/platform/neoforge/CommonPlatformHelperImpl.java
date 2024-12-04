@@ -1,45 +1,30 @@
 package samebutdifferent.ecologics.platform.neoforge;
 
 import java.util.Map;
-import java.util.function.Supplier;
 
-import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.core.registries.Registries;
-import net.minecraft.sounds.SoundEvent;
-import net.minecraft.world.effect.MobEffect;
-import net.minecraft.world.entity.Entity;
+import com.google.common.collect.ImmutableMap;
+
+import net.minecraft.core.Holder;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
-import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.entity.SpawnPlacementType;
 import net.minecraft.world.entity.SpawnPlacements;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.SpawnEggItem;
 import net.minecraft.world.item.alchemy.Potion;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.ComposterBlock;
 import net.minecraft.world.level.block.FireBlock;
-import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
 import net.minecraft.world.level.block.state.properties.WoodType;
 import net.minecraft.world.level.levelgen.Heightmap;
-import net.minecraft.world.level.levelgen.feature.Feature;
-import net.minecraft.world.level.levelgen.feature.foliageplacers.FoliagePlacer;
-import net.minecraft.world.level.levelgen.feature.foliageplacers.FoliagePlacerType;
-import net.minecraft.world.level.levelgen.feature.trunkplacers.TrunkPlacer;
-import net.minecraft.world.level.levelgen.feature.trunkplacers.TrunkPlacerType;
-import net.neoforged.neoforge.common.DeferredSpawnEggItem;
-import net.neoforged.neoforge.registries.DeferredRegister;
-import samebutdifferent.ecologics.Ecologics;
-import samebutdifferent.ecologics.platform.CommonPlatformHelper;
+import samebutdifferent.ecologics.mixin.neoforge.AxeItemAccessor;
 
 // @EventBusSubscriber(modid = Ecologics.MOD_ID, bus = EventBusSubscriber.Bus.MOD)
 public class CommonPlatformHelperImpl 
 {
-    public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(BuiltInRegistries.BLOCK, Ecologics.MOD_ID);
+    /*public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(BuiltInRegistries.BLOCK, Ecologics.MOD_ID);
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(BuiltInRegistries.ITEM, Ecologics.MOD_ID);
     public static final DeferredRegister<SoundEvent> SOUND_EVENTS = DeferredRegister.create(BuiltInRegistries.SOUND_EVENT, Ecologics.MOD_ID);
     public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITY_TYPES = DeferredRegister.create(BuiltInRegistries.BLOCK_ENTITY_TYPE, Ecologics.MOD_ID);
@@ -48,7 +33,7 @@ public class CommonPlatformHelperImpl
     public static final DeferredRegister<TrunkPlacerType<?>> TRUNK_PLACER_TYPES = DeferredRegister.create(Registries.TRUNK_PLACER_TYPE, Ecologics.MOD_ID);
     public static final DeferredRegister<Potion> POTIONS = DeferredRegister.create(BuiltInRegistries.POTION, Ecologics.MOD_ID);
     public static final DeferredRegister<MobEffect> MOB_EFFECTS = DeferredRegister.create(BuiltInRegistries.MOB_EFFECT, Ecologics.MOD_ID);
-    public static final DeferredRegister<Feature<?>> FEATURES = DeferredRegister.create(BuiltInRegistries.FEATURE, Ecologics.MOD_ID);
+    public static final DeferredRegister<Feature<?>> FEATURES = DeferredRegister.create(BuiltInRegistries.FEATURE, Ecologics.MOD_ID);*/
 
     /*public static <T extends Block> Supplier<T> registerBlock(String name, Supplier<T> block) {
         return BLOCKS.register(name, block);
@@ -82,10 +67,6 @@ public class CommonPlatformHelperImpl
         return POTIONS.register(name, potion);
     }
 
-    public static void registerBrewingRecipe(Holder<Potion> input, Item ingredient, Holder<Potion> output) {
-        // BrewingRecipeRegistry.addRecipe(new BrewingRecipe(Ingredient.of(input), ingredient, Ingredient.of(output)));
-    }
-
     public static <T extends FoliagePlacer> Supplier<FoliagePlacerType<T>> registerFoliagePlacerType(String name, Supplier<FoliagePlacerType<T>> foliagePlacerType) {
         return FOLIAGE_PLACER_TYPES.register(name, foliagePlacerType);
     }
@@ -106,6 +87,10 @@ public class CommonPlatformHelperImpl
         return FEATURES.register(name, feature);
     }*/
 
+    public static void registerBrewingRecipe(Holder<Potion> input, Item ingredient, Holder<Potion> output) {
+        // PotionBrewing.Builder.addRecipe(input, ingredient, output);
+    }
+    
     public static <T extends Mob> void registerSpawnPlacement(EntityType<T> entityType, SpawnPlacementType decoratorType, Heightmap.Types heightMapType, SpawnPlacements.SpawnPredicate<T> decoratorPredicate) {
         // SpawnPlacements.register(entityType, decoratorType, heightMapType, decoratorPredicate);
     }
@@ -123,8 +108,8 @@ public class CommonPlatformHelperImpl
     }
 
     public static void registerStrippables(Map<Block, Block> blockMap) {
-        // Map<Block, Block> strippables = new ImmutableMap.Builder<Block, Block>().putAll(AxeItemAccessor.getStrippables()).putAll(blockMap).build();
-        // AxeItemAccessor.setStrippables(strippables);
+        Map<Block, Block> strippables = new ImmutableMap.Builder<Block, Block>().putAll(AxeItemAccessor.getStrippables()).putAll(blockMap).build();
+        AxeItemAccessor.setStrippables(strippables);
     }
 
     //TODO: Replace or remove this.
