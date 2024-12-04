@@ -68,8 +68,8 @@ public class Ecologics
     }
 
     public static void registerBrewingRecipes() {
-        // CommonPlatformHelper.registerBrewingRecipe(Potions.AWKWARD, ModItems.PENGUIN_FEATHER, Holder.direct(ModPotions.SLIDING));
-        // CommonPlatformHelper.registerBrewingRecipe(Holder.direct(ModPotions.SLIDING), Items.REDSTONE, Holder.direct(ModPotions.LONG_SLIDING));
+        CommonPlatformHelper.registerBrewingRecipe(Potions.AWKWARD, ModItems.PENGUIN_FEATHER, ModPotions.SLIDING);
+        CommonPlatformHelper.registerBrewingRecipe(ModPotions.SLIDING, Items.REDSTONE, ModPotions.LONG_SLIDING);
     }
 
     public static void registerCompostables() {

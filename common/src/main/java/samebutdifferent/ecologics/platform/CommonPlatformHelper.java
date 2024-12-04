@@ -82,11 +82,6 @@ public class CommonPlatformHelper
     }
 
     @ExpectPlatform
-    public static void registerBrewingRecipe(Holder<Potion> awkward, Item ingredient, Holder<Potion> output) {
-        throw new AssertionError();
-    }
-
-    @ExpectPlatform
     public static <T extends FoliagePlacer> Supplier<FoliagePlacerType<T>> registerFoliagePlacerType(String name, Supplier<FoliagePlacerType<T>> foliagePlacerType) {
         throw new AssertionError();
     }
@@ -115,6 +110,11 @@ public class CommonPlatformHelper
         throw new AssertionError();
     }*/
 
+    @ExpectPlatform
+    public static void registerBrewingRecipe(Holder<Potion> awkward, Item ingredient, Holder<Potion> output) {
+        throw new AssertionError();
+    }
+    
     @ExpectPlatform
     public static <T extends Mob> void registerSpawnPlacement(EntityType<T> entityType, SpawnPlacementType decoratorType, Heightmap.Types heightMapType, SpawnPlacements.SpawnPredicate<T> decoratorPredicate) {
         throw new AssertionError();
