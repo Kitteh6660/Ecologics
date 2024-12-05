@@ -5,7 +5,7 @@
       "conditions": {
         "items": [
           {
-            "tag": "ecologics:azalea_logs"
+            "items": "#ecologics:azalea_logs"
           }
         ]
       },

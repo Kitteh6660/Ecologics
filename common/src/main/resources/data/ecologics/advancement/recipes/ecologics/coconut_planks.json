@@ -5,7 +5,7 @@
       "conditions": {
         "items": [
           {
-            "tag": "ecologics:coconut_logs"
+            "items": "#ecologics:coconut_logs"
           }
         ]
       },
